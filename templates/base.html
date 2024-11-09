@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <title>Boggle</title>
+    <link rel="stylesheet" href="/static/boggle.css">
+</head>
+<body>
+    <h1 id="title">Boggle</h1>
+    <div class="game-container">
+        <table>
+            {% for row in board %}
+            <tr>
+                {% for item in row %}
+                <td>{{item}}</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>
+        <form id="guess-form" action="/new-board" method="GET">
+            <input id="guess-input" name="guess" type="text" placeholder="type guess here..." autocomplete="off" autofocus>
+            <button class="enter" type="button">Enter</button>
+            <button class="new-game-btn hidden">New Game</button>
+        </form>
+    </div>
+
+    <div class="scoreboard">
+        <div id="score">Score: {{ score }}</div>
+        <div id="highscore">Highscore: {{ highscore }}</div>
+        <div id="games-played">Games Played: {{ played }}</div>
+    </div>
+
+    <!-- filled dynamically by js -->
+    <div class="timer"></div>
+    <ul class="words-found"></ul>
+
+    <!-- filled dynamically by js, used to show response messages -->
+    <div class="message-box"></div>
+   
+
+    <script src="http://unpkg.com/jquery"></script>
+    <script src="https://unpkg.com/axios@0.19.0/dist/axios.js"></script>
+    <script src="/static/boggle.js"></script>
+</body>
+</html>
